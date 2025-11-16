@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby Tracker - UI Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: #202124;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e8eaed;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .app-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: #5f6368;
+        }
+
+        .user-menu {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 65px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #fff;
+            border-right: 1px solid #e8eaed;
+            padding: 24px 12px;
+            overflow-y: auto;
+        }
+
+        .list-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5f6368;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding: 0 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 14px;
+            color: #202124;
+        }
+
+        .nav-item:hover {
+            background: #f1f3f4;
+        }
+
+        .nav-item.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+        .nav-item.active .nav-icon {
+            opacity: 1;
+        }
+
+        .nav-count {
+            margin-left: auto;
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            background: #fff;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .content-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .content-meta {
+            font-size: 13px;
+            color: #5f6368;
+        }
+
+        /* Add Item Section */
+        .add-item-section {
+            padding: 20px 32px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .add-item-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .add-item-input:hover {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .add-icon {
+            width: 20px;
+            height: 20px;
+            color: #1a73e8;
+        }
+
+        .add-placeholder {
+            flex: 1;
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        .import-btn {
+            padding: 6px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            background: #fff;
+            color: #5f6368;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .import-btn:hover {
+            background: #f8f9fa;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+
+        /* Items List */
+        .items-list {
+            padding: 0 32px 32px;
+        }
+
+        .time-group {
+            margin-bottom: 32px;
+        }
+
+        .time-group-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5f6368;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f3f4;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin: 0 -8px;
+            padding-left: 8px;
+            padding-right: 8px;
+            border-radius: 4px;
+        }
+
+        .item:hover {
+            background: #f8f9fa;
+        }
+
+        .item:hover .item-actions {
+            opacity: 1;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #dadce0;
+            border-radius: 50%;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.15s;
+        }
+
+        .checkbox:hover {
+            border-color: #1a73e8;
+        }
+
+        .item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-title {
+            font-size: 14px;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+
+        .item-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            font-size: 12px;
+            color: #5f6368;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            background: #e8f0fe;
+            color: #1967d2;
+            border-radius: 12px;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .action-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6368;
+            transition: all 0.15s;
+        }
+
+        .action-btn:hover {
+            background: #f1f3f4;
+            color: #202124;
+        }
+
+        /* Right Panel (Detail View) */
+        .detail-panel {
+            width: 360px;
+            background: #fff;
+            border-left: 1px solid #e8eaed;
+            padding: 24px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .detail-panel.active {
+            display: block;
+        }
+
+        .detail-close {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 200px;
+            background: #f1f3f4;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6368;
+            font-size: 13px;
+        }
+
+        .detail-title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #202124;
+            margin-bottom: 16px;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5f6368;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: #202124;
+        }
+
+        .detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 32px;
+            color: #5f6368;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .empty-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .empty-subtitle {
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="app-title">Hobby Tracker</div>
+        </div>
+        <div class="user-menu">JD</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="list-section">
+                <div class="section-title">My Lists</div>
+                <div class="nav-item active">
+                    <span class="nav-icon">📋</span>
+                    <span>All Items</span>
+                    <span class="nav-count">24</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">🎬</span>
+                    <span>Movies to Watch</span>
+                    <span class="nav-count">8</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">🍽️</span>
+                    <span>Restaurants</span>
+                    <span class="nav-count">5</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">✈️</span>
+                    <span>Travel Destinations</span>
+                    <span class="nav-count">7</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">🎵</span>
+                    <span>Music</span>
+                    <span class="nav-count">4</span>
+                </div>
+            </div>
+
+            <div class="list-section">
+                <div class="section-title">Circles</div>
+                <div class="nav-item">
+                    <span class="nav-icon">💑</span>
+                    <span>Partner</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Friends</span>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">👨‍👩‍👧</span>
+                    <span>Family</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-header">
+                <div class="content-title">All Items</div>
+                <div class="content-meta">24 items • Last updated today</div>
+            </div>
+
+            <div class="add-item-section">
+                <div class="add-item-input">
+                    <span class="add-icon">+</span>
+                    <span class="add-placeholder">Add a new item or paste a link...</span>
+                    <button class="import-btn">Import</button>
+                </div>
+            </div>
+
+            <div class="items-list">
+                <!-- This Week -->
+                <div class="time-group">
+                    <div class="time-group-title">This Week</div>
+                    
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">The Grand Budapest Hotel</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">🎬 Movie</span>
+                                <span class="meta-tag">📅 Added 2 days ago</span>
+                                <span class="meta-tag">📱 From YouTube</span>
+                                <span class="tag">Wes Anderson</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">Ramen Tatsu-Ya - Austin, TX</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">🍽️ Restaurant</span>
+                                <span class="meta-tag">📅 Added yesterday</span>
+                                <span class="meta-tag">📱 From Instagram</span>
+                                <span class="tag">Japanese</span>
+                                <span class="tag">Ramen</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">Santorini, Greece</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">✈️ Travel</span>
+                                <span class="meta-tag">📅 Added 3 days ago</span>
+                                <span class="meta-tag">🌐 From Web</span>
+                                <span class="tag">Europe</span>
+                                <span class="tag">Summer 2026</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Week -->
+                <div class="time-group">
+                    <div class="time-group-title">Last Week</div>
+                    
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">Learn to make sourdough bread</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">🎯 Activity</span>
+                                <span class="meta-tag">📅 Added 5 days ago</span>
+                                <span class="meta-tag">📱 From TikTok</span>
+                                <span class="tag">Cooking</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">Blonde - Frank Ocean</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">🎵 Music</span>
+                                <span class="meta-tag">📅 Added 6 days ago</span>
+                                <span class="meta-tag">📱 From X</span>
+                                <span class="tag">R&B</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earlier -->
+                <div class="time-group">
+                    <div class="time-group-title">Earlier</div>
+                    
+                    <div class="item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">Visit the Louvre Museum</div>
+                            <div class="item-meta">
+                                <span class="meta-tag">🎯 Activity</span>
+                                <span class="meta-tag">📅 Added 2 weeks ago</span>
+                                <span class="meta-tag">📱 From Wikipedia</span>
+                                <span class="tag">Paris</span>
+                                <span class="tag">Art</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Panel (Hidden by default) -->
+        <div class="detail-panel">
+            <div class="detail-close">
+                <button class="action-btn">✕</button>
+            </div>
+            
+            <div class="detail-image">
+                Image will appear here
+            </div>
+
+            <div class="detail-title">The Grand Budapest Hotel</div>
+
+            <div class="detail-section">
+                <div class="detail-label">Category</div>
+                <div class="detail-value">🎬 Movie to Watch</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Source</div>
+                <div class="detail-value">YouTube recommendation</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Added</div>
+                <div class="detail-value">2 days ago by John</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Tags</div>
+                <div class="detail-tags">
+                    <span class="tag">Wes Anderson</span>
+                    <span class="tag">Comedy</span>
+                    <span class="tag">2014</span>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Description</div>
+                <div class="detail-value">The adventures of Gustave H, a legendary concierge at a famous European hotel...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

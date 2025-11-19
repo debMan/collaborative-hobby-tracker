@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: hobby-tracker-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: hobby_tracker
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - hobby-tracker
+
+  # Uncomment when ready to add Redis
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: hobby-tracker-redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - hobby-tracker
+
+volumes:
+  mongodb_data:
+
+networks:
+  hobby-tracker:
+    driver: bridge

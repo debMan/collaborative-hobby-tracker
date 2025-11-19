@@ -1,0 +1,43 @@
+app:
+  name: "Hobby Tracker API"
+  version: "1.0.0"
+  environment: "development"
+
+server:
+  port: 8080
+  host: "0.0.0.0"
+  read_timeout: 30
+  write_timeout: 30
+  shutdown_timeout: 10
+  allowed_origins:
+    - "http://localhost:3000"
+    - "http://localhost:5173"
+
+database:
+  uri: "mongodb://localhost:27017"
+  name: "hobby_tracker"
+  timeout: 10
+  pool_size: 10
+
+auth:
+  jwt_secret: "change-me-in-production"  # Override with HT_AUTH_JWT_SECRET env var
+  jwt_expiration: 15  # minutes
+  refresh_expiration: 7  # days
+  password_min_length: 8
+
+ai:
+  provider: "ollama"
+  base_url: "http://localhost:11434"
+  api_key: ""  # Not needed for Ollama
+  model: "llama3:8b"
+  timeout: 30
+
+oauth:
+  google:
+    client_id: ""
+    client_secret: ""
+    redirect_url: "http://localhost:8080/api/v1/auth/oauth/google/callback"
+  github:
+    client_id: ""
+    client_secret: ""
+    redirect_url: "http://localhost:8080/api/v1/auth/oauth/github/callback"

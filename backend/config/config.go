@@ -31,26 +31,26 @@ type AppConfig struct {
 type ServerConfig struct {
 	Port            int      `koanf:"port"`
 	Host            string   `koanf:"host"`
-	ReadTimeout     int      `koanf:"read_timeout"`  // seconds
-	WriteTimeout    int      `koanf:"write_timeout"` // seconds
+	ReadTimeout     int      `koanf:"read_timeout"`     // seconds
+	WriteTimeout    int      `koanf:"write_timeout"`    // seconds
 	ShutdownTimeout int      `koanf:"shutdown_timeout"` // seconds
-	AllowedOrigins  []string `koanf:"allowed_origins"` // CORS
+	AllowedOrigins  []string `koanf:"allowed_origins"`  // CORS
 }
 
 // DatabaseConfig holds MongoDB configuration
 type DatabaseConfig struct {
 	URI      string `koanf:"uri"`
 	Name     string `koanf:"name"`
-	Timeout  int    `koanf:"timeout"`  // seconds
+	Timeout  int    `koanf:"timeout"` // seconds
 	PoolSize int    `koanf:"pool_size"`
 }
 
 // AuthConfig holds authentication configuration
 type AuthConfig struct {
-	JWTSecret           string `koanf:"jwt_secret"`
-	JWTExpiration       int    `koanf:"jwt_expiration"`        // minutes
-	RefreshExpiration   int    `koanf:"refresh_expiration"`    // days
-	PasswordMinLength   int    `koanf:"password_min_length"`
+	JWTSecret         string `koanf:"jwt_secret"`
+	JWTExpiration     int    `koanf:"jwt_expiration"`     // minutes
+	RefreshExpiration int    `koanf:"refresh_expiration"` // days
+	PasswordMinLength int    `koanf:"password_min_length"`
 }
 
 // AIConfig holds AI service configuration
@@ -88,7 +88,7 @@ func Load() (*Config, error) {
 	k := koanf.New(".")
 
 	// Load from config.yaml (if exists)
-	if err := k.Load(file.Provider("config/config.yaml"), yaml.Parser()); err != nil {
+	if err := k.Load(file.Provider("config.yaml"), yaml.Parser()); err != nil {
 		// Config file is optional, continue if it doesn't exist
 		fmt.Printf("Warning: config.yaml not found, using defaults and env vars: %v\n", err)
 	}

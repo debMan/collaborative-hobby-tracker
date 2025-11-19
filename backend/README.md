@@ -46,17 +46,21 @@ backend/
 1. **Clone the repository** (if not already cloned)
 
 2. **Install dependencies**:
+
    ```bash
    make install
    ```
 
 3. **Set up configuration**:
+
    ```bash
-   cp config/config.example.yaml config/config.yaml
+   cp config.example.yaml config.yaml
    ```
-   Edit `config/config.yaml` with your settings.
+
+   Edit `config.yaml` with your settings.
 
 4. **Set environment variables** (optional, overrides config.yaml):
+
    ```bash
    export HT_AUTH_JWT_SECRET="your-secret-key"
    export HT_DATABASE_URI="mongodb://localhost:27017"
@@ -65,6 +69,7 @@ backend/
    ```
 
 5. **Start MongoDB**:
+
    ```bash
    make docker-up
    # or just MongoDB:
@@ -72,6 +77,7 @@ backend/
    ```
 
 6. **Run the application**:
+
    ```bash
    make run
    ```
@@ -81,6 +87,7 @@ backend/
 ### Development
 
 For hot-reload during development:
+
 ```bash
 make dev
 ```
@@ -89,9 +96,10 @@ This uses [Air](https://github.com/cosmtrek/air) for automatic reloading.
 
 ## Configuration
 
-Configuration is loaded from `config/config.yaml` and can be overridden with environment variables.
+Configuration is loaded from `config.yaml` and can be overridden with environment variables.
 
 Environment variables use the `HT_` prefix and follow the structure:
+
 ```
 HT_<SECTION>_<KEY>
 
@@ -101,23 +109,27 @@ HT_DATABASE_URI=mongodb://localhost:27017
 HT_AUTH_JWT_SECRET=my-secret
 ```
 
-See `config/config.example.yaml` for all available options.
+See `config.example.yaml` for all available options.
 
 ## API Endpoints
 
 ### Health Check
+
 - `GET /health` - Server health check
 
 ### API v1
+
 - Base URL: `/api/v1`
 
 #### Authentication (Coming Soon)
+
 - `POST /api/v1/auth/register` - Register new user
 - `POST /api/v1/auth/login` - Login
 - `GET /api/v1/auth/me` - Get current user
 - `GET /api/v1/auth/oauth/{provider}` - OAuth login (Google, GitHub)
 
 #### Items (Coming Soon)
+
 - `GET /api/v1/items` - List items
 - `POST /api/v1/items` - Create item
 - `GET /api/v1/items/:id` - Get item
@@ -129,16 +141,19 @@ See `config/config.example.yaml` for all available options.
 ## Testing
 
 Run all tests:
+
 ```bash
 make test
 ```
 
 Run unit tests only:
+
 ```bash
 make test-unit
 ```
 
 Run integration tests only:
+
 ```bash
 make test-integration
 ```
@@ -164,11 +179,13 @@ make fmt               # Format code
 ## Docker
 
 Start all services (MongoDB):
+
 ```bash
 docker-compose up -d
 ```
 
 Stop services:
+
 ```bash
 docker-compose down
 ```
@@ -176,6 +193,7 @@ docker-compose down
 ## OAuth Setup
 
 ### Google OAuth
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project
 3. Enable Google+ API
@@ -184,6 +202,7 @@ docker-compose down
 6. Add client ID and secret to config
 
 ### GitHub OAuth
+
 1. Go to GitHub Settings > Developer settings > OAuth Apps
 2. Create a new OAuth App
 3. Set authorization callback URL: `http://localhost:8080/api/v1/auth/oauth/github/callback`
@@ -193,11 +212,14 @@ docker-compose down
 
 1. Install Ollama from [ollama.ai](https://ollama.ai)
 2. Pull a model:
+
    ```bash
    ollama pull llama3:8b
    ```
+
 3. Start Ollama (usually runs automatically)
 4. Configure in `config.yaml`:
+
    ```yaml
    ai:
      provider: "ollama"

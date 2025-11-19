@@ -1,22 +1,27 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/coverage/
+frontend/.vite/
+
+# Backend
+backend/bin/
+backend/config.yaml
+backend/.env
+backend/*.log
+backend/logs/
+backend/tmp/
+backend/.air.toml
+
 # Dependencies
-node_modules/
-/.pnp
+.pnp
 .pnp.js
-
-# Testing
-/coverage
-
-# Production
-/dist
-/build
-
-# Misc
-.DS_Store
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # Logs
 npm-debug.log*
@@ -24,16 +29,27 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
+*.log
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
 
 # OS
+.DS_Store
 Thumbs.db
+
+# Testing
+coverage/
+
+# Misc
+.claude/

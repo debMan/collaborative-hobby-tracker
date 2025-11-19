@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"github.com/debMan/collaborative-hobby-tracker/pkg/logger"
+	"github.com/debMan/collaborative-hobby-tracker/backend/pkg/logger"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,4 +1,4 @@
-module github.com/debMan/collaborative-hobby-tracker
+module github.com/debMan/collaborative-hobby-tracker/backend
 
 go 1.25.1
 

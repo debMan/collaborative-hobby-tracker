@@ -11,9 +11,9 @@ echo ""
 mkdir -p config
 
 # Copy example config if config.yaml doesn't exist
-if [ ! -f "config/config.yaml" ]; then
+if [ ! -f "config.yaml" ]; then
     echo "📝 Creating config.yaml from example..."
-    cp config/config.example.yaml config/config.yaml
+    cp config.example.yaml config.yaml
     echo "✅ config.yaml created"
 else
     echo "⚠️  config.yaml already exists, skipping..."
@@ -59,7 +59,7 @@ echo "✨ Setup complete!"
 echo ""
 echo "Next steps:"
 echo "1. Start MongoDB: make docker-up"
-echo "2. Edit config/config.yaml with your settings"
+echo "2. Edit config.yaml with your settings"
 echo "3. Run the application: make run"
 echo "4. Visit http://localhost:8080/health"
 echo ""

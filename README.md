@@ -1,272 +1,207 @@
-# Hobby Tracker
+# Collaborative Hobby Tracker
 
-A cross-platform web application for tracking and organizing hobbies with AI-powered categorization and multi-source import capabilities.
+A full-stack web application for tracking and organizing hobbies with AI-powered categorization and collaborative features.
 
-## Features
+## 🎯 Overview
 
-### Core Functionality
+This application helps users track and organize their hobbies with intelligent features:
 
-- **AI-Powered Categorization**: Automatically categorizes items (movies, restaurants, travel destinations, music, activities, etc.)
-- **Multi-Source Import**: Import from Instagram, YouTube, X (Twitter), TikTok, Telegram, Wikipedia, and web links
-- **Smart Tagging**: AI learns user preferences and suggests relevant tags
-- **List Management**: Create and organize custom lists with different categories
-- **Circles**: Package lists together and share with specific groups (Partner, Friends, Family, etc.)
-- **Progress Tracking**: Check off completed items with metadata tracking
-- **Calendar Integration**: Plan activities with due dates (ready for calendar sync)
-- **Access Control**: Share lists and circles with different permission levels
+- **AI-Powered Categorization**: Automatically categorize items (movies, restaurants, travel, activities, etc.) using AI
+- **Multi-Source Import**: Import from Instagram, YouTube, Twitter/X, TikTok, Telegram, Wikipedia, or plain text
+- **Smart Tagging**: AI learns your tagging preferences and suggests tags for new items
+- **Collaborative Circles**: Share categories with different groups (Partner, Friends, Family, etc.)
+- **Access Control**: Fine-grained permissions (private, view, edit, admin)
+- **Calendar Integration**: Sync with Google Calendar and Apple Calendar for planning
+- **Metadata Enrichment**: Fetch details from IMDB, Google Maps, and other sources
 
-### User Interface
+## 🏗️ Architecture
 
-- Clean, distraction-free design inspired by Google Tasks
-- Material Design principles
-- List-based layout (no visual clutter)
-- Time-based grouping (This Week, Last Week, Earlier)
-- Detail panel for rich item information
-- Images hidden in list view, shown in detail view
+This is a monorepo containing both frontend and backend:
 
-## Tech Stack
+```
+collaborative-hobby-tracker/
+├── frontend/          # React + TypeScript web application
+│   ├── src/
+│   ├── public/
+│   └── package.json
+├── backend/           # Go API server
+│   ├── cmd/
+│   ├── internal/
+│   ├── pkg/
+│   └── go.mod
+├── .gitignore
+├── LICENSE
+└── README.md          # This file
+```
 
-- **Framework**: React 18 with TypeScript
-- **Routing**: React Router v6
-- **State Management**: Zustand
-- **Styling**: Tailwind CSS
-- **Build Tool**: Vite
-- **Icons**: Lucide React
-- **Date Handling**: date-fns
-
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ and npm/yarn
-- Modern web browser
+- **Frontend**: Node.js 18+ and npm
+- **Backend**: Go 1.21+, MongoDB 7.0+
+- **AI Features**: Ollama (or access to OpenAI API)
 
-### Installation
-
-1. Clone the repository:
+### 1. Start MongoDB
 
 ```bash
-git clone https://github.com/debMan/collaborative-hobby-tracker.git
-cd collaborative-hobby-tracker
+# Using Docker (easiest)
+cd backend
+make docker-up
+
+# Or install MongoDB locally
+# https://www.mongodb.com/docs/manual/installation/
 ```
 
-2. Install dependencies:
+### 2. Start Backend API
 
 ```bash
+cd backend
+
+# First time setup
+cp config.example.yaml config.yaml
+# Edit config.yaml with your settings (MongoDB URI, JWT secret, etc.)
+
+# Install dependencies and run
+make install
+make run
+
+# For development with hot reload
+make dev
+```
+
+Backend will be available at **<http://localhost:8080>**
+
+Test the API:
+
+```bash
+curl http://localhost:8080/health
+```
+
+### 3. Start Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
 npm install
-```
 
-3. Create environment file:
-
-```bash
-cp .env.example .env
-```
-
-4. Start development server:
-
-```bash
+# Start development server
 npm run dev
 ```
 
-5. Open your browser and navigate to `http://localhost:3000`
+Frontend will be available at **<http://localhost:5173>**
 
-### Default Test Account
+## 📚 Documentation
 
-For development purposes, you can use any email/password combination. The app uses mock authentication.
+- **[Frontend README](frontend/README.md)** - React application details, components, state management
+- **[Backend README](backend/README.md)** - API documentation, deployment, testing
 
-Example:
+## 🛠️ Tech Stack
 
-- Email: `test@example.com`
-- Password: `password123`
+### Frontend
 
-## Project Structure
+- **Framework**: React 18
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Routing**: React Router v6
+- **Icons**: Lucide React
 
-```
-hobby-tracker-app/
-├── src/
-│   ├── components/          # React components
-│   │   ├── auth/           # Authentication components
-│   │   ├── items/          # Item-related components
-│   │   ├── layout/         # Layout components (Header, Sidebar)
-│   │   └── modals/         # Modal dialogs
-│   ├── pages/              # Page components
-│   │   ├── Dashboard.tsx   # Main dashboard
-│   │   ├── Login.tsx       # Login page
-│   │   └── Register.tsx    # Registration page
-│   ├── services/           # API services
-│   │   └── api.ts          # API service layer with mock implementations
-│   ├── store/              # State management
-│   │   └── index.ts        # Zustand store
-│   ├── types/              # TypeScript type definitions
-│   │   └── index.ts        # App-wide types
-│   ├── utils/              # Utility functions
-│   │   └── mockData.ts     # Mock data for development
-│   ├── App.tsx             # Root component with routing
-│   ├── main.tsx            # Application entry point
-│   └── index.css           # Global styles
-├── public/                 # Static assets
-├── index.html              # HTML template
-├── package.json            # Dependencies and scripts
-├── tsconfig.json           # TypeScript configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-├── vite.config.ts          # Vite configuration
-└── README.md               # This file
+### Backend
+
+- **Language**: Go 1.21+
+- **Framework**: Gin
+- **Database**: MongoDB
+- **Configuration**: koanf (YAML + environment variables)
+- **Logging**: zap (structured logging)
+- **Authentication**: JWT + OAuth 2.0 (Google, GitHub)
+- **AI**: OpenAI-compatible API (Ollama, LocalAI, OpenAI)
+
+## 🧪 Development
+
+### Frontend Commands
+
+```bash
+cd frontend
+
+npm run dev          # Start dev server (http://localhost:5173)
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
 ```
 
-## Available Scripts
+### Backend Commands
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+```bash
+cd backend
 
-## Backend Integration
-
-### Current State
-
-The application currently uses **mock data** stored in `localStorage`. All API calls in `src/services/api.ts` are simulated with delays to mimic network requests.
-
-### Backend Connection (When Ready)
-
-The application is designed to easily connect to a real backend. All backend connections are **commented out** in `src/services/api.ts` with clear markers:
-
-```typescript
-/* BACKEND CONNECTION - Uncomment when backend is ready
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...
-  });
-*/
+make dev             # Run with hot reload
+make build           # Build binary
+make run             # Run built binary
+make test            # Run all tests
+make test-unit       # Run unit tests only
+make test-integration # Run integration tests
+make lint            # Run linter
+make fmt             # Format code
+make docker-up       # Start MongoDB
+make docker-down     # Stop MongoDB
 ```
 
-#### Steps to Connect Backend
+## 🌟 Features
 
-1. **Set API URL**:
-   - Update `VITE_API_URL` in `.env` file
-   - Example: `VITE_API_URL=https://api.hobbytracker.com/v1`
+### Implemented (MVP)
 
-2. **Uncomment Backend Calls**:
-   - In `src/services/api.ts`, uncomment all backend connection blocks
-   - Remove or comment out mock implementations
+- ✅ Clean, distraction-free UI
+- ✅ User authentication (email + password)
+- ✅ OAuth login (Google, GitHub)
+- ✅ Item management (create, read, update, delete)
+- ✅ Categories and organization
+- ✅ Circles for sharing
+- ✅ Basic access control
+- ✅ MongoDB persistence
+- ✅ Health monitoring
 
-3. **Configure OAuth**:
-   - Set up OAuth client IDs in `.env`:
-     - `VITE_GOOGLE_CLIENT_ID`
-     - `VITE_APPLE_CLIENT_ID`
-     - `VITE_TWITTER_CLIENT_ID`
+### In Progress
 
-4. **Update OAuth Flow**:
-   - Implement OAuth redirect handling
-   - Update OAuth login functions in `src/services/api.ts`
+- 🔄 AI-powered categorization
+- 🔄 Content fetching from external sources
+- 🔄 Tag learning and suggestions
+- 🔄 Metadata enrichment (IMDB, Google Maps)
 
-### Backend API Endpoints Expected
+### Planned
 
-#### Authentication
+- 📅 Calendar integration (Google, Apple)
+- 🔔 Notifications and reminders
+- 🔄 Real-time collaboration
+- 📊 Analytics and insights
+- 📱 Mobile apps (iOS, Android)
+- 🌐 Internationalization (i18n)
 
-- `POST /api/auth/login` - Email/password login
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/logout` - Logout
-- `GET /api/auth/me` - Get current user
-- `GET /api/auth/oauth/{provider}` - OAuth login
+## 🎨 Design Philosophy
 
-#### Items
+- **Simplicity First**: Clean interface without visual clutter
+- **Content-First**: Focus on your hobbies, not decorative UI
+- **List-Based**: Traditional list view instead of cards
+- **Progressive Disclosure**: Advanced features available but not overwhelming
+- **Material Design**: Familiar and consistent UI patterns
 
-- `GET /api/items` - Get all items
-- `GET /api/lists/{listId}/items` - Get items by list
-- `POST /api/items` - Create item
-- `PATCH /api/items/{id}` - Update item
-- `DELETE /api/items/{id}` - Delete item
-- `POST /api/items/{id}/toggle` - Toggle completion
+## 📄 License
 
-#### Import
+See [LICENSE](LICENSE) file for details.
 
-- `POST /api/import` - Import item with AI categorization
+## 🤝 Contributing
 
-#### Lists
+This is a personal learning project. Suggestions and feedback are welcome via GitHub issues!
 
-- `GET /api/lists` - Get all lists
-- `POST /api/lists` - Create list
-- `PATCH /api/lists/{id}` - Update list
-- `DELETE /api/lists/{id}` - Delete list
+## 💬 Support
 
-#### Circles
+For questions or issues:
 
-- `GET /api/circles` - Get all circles
-- `POST /api/circles` - Create circle
-- `PATCH /api/circles/{id}` - Update circle
-- `DELETE /api/circles/{id}` - Delete circle
-
-#### Tags
-
-- `GET /api/tags` - Get all tags
-- `POST /api/tags/suggest` - Get AI tag suggestions
-
-## Features to Implement (Backend Required)
-
-The following features are designed but require backend implementation:
-
-1. **Real AI Categorization**: Replace mock keyword detection with actual AI models
-2. **Image Fetching**: Fetch images from source URLs (Instagram, YouTube, etc.)
-3. **External Data Integration**:
-   - IMDB for movies
-   - Google Maps for locations
-   - Music APIs for albums/artists
-4. **Calendar Integration**: Sync with Google Calendar, Apple Calendar
-5. **Real-time Collaboration**: Share and edit lists with others
-6. **Push Notifications**: Due date reminders
-7. **Search and Filters**: Full-text search across items
-
-## Mock Data
-
-During development, the app uses mock data defined in `src/utils/mockData.ts`. This includes:
-
-- Sample users
-- Pre-populated items (movies, restaurants, travel destinations, etc.)
-- Sample lists and circles
-- Sample tags
-
-Mock data is stored in `localStorage` and persists between sessions.
-
-## Design Philosophy
-
-- **Simplicity First**: Clean, distraction-free interface
-- **Content-First**: Focus on hobby items, not decorative UI
-- **List-Based**: No cards, minimal visual noise
-- **Hidden Complexity**: Advanced features accessible but not overwhelming
-- **Responsive**: Works on desktop and mobile (mobile-optimized version coming)
-
-## Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
-
-## Future Roadmap
-
-- [ ] Native mobile apps (iOS, Android)
-- [ ] Offline support with PWA
-- [ ] Advanced filtering and search
-- [ ] Export functionality (PDF, CSV)
-- [ ] Browser extensions for quick imports
-- [ ] API for third-party integrations
-- [ ] Analytics and insights dashboard
-- [ ] Recommendations based on history
-
-## Support
-
-For issues and questions, please open an issue on GitHub or contact the development team.
+- Open an issue on GitHub
+- Check the documentation in `frontend/` and `backend/` directories
 
 ---
 
-Built with ❤️ for hobby enthusiasts
+Built with ❤️ as a learning project to practice full-stack development, Go, React, and cloud deployment.

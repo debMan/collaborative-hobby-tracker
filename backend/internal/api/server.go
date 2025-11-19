@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/debMan/collaborative-hobby-tracker/config"
-	"github.com/debMan/collaborative-hobby-tracker/internal/api/middleware"
-	"github.com/debMan/collaborative-hobby-tracker/pkg/database"
-	"github.com/debMan/collaborative-hobby-tracker/pkg/logger"
+	"github.com/debMan/collaborative-hobby-tracker/backend/config"
+	"github.com/debMan/collaborative-hobby-tracker/backend/internal/api/middleware"
+	"github.com/debMan/collaborative-hobby-tracker/backend/pkg/database"
+	"github.com/debMan/collaborative-hobby-tracker/backend/pkg/logger"
 	"github.com/gin-gonic/gin"
 )
 

@@ -44,7 +44,7 @@ export interface Category {
     id: string;
     name: string;
     icon: string;
-    circleId: string | null; // null = global/personal category
+    circleId: string; // Circle ID (including 'circle-personal' for personal items)
     ownerId: string;
     itemCount: number;
     createdAt: Date;
@@ -55,7 +55,7 @@ export interface HobbyItem {
     id: string;
     title: string;
     description?: string;
-    categoryId: string; // Reference to Category
+    categoryId: string; // Single category ID - item belongs to one category in one circle
     categoryConfidence?: number; // AI confidence score (0-1)
     isCompleted: boolean;
     imageUrl?: string;
@@ -76,7 +76,6 @@ export interface HobbyItem {
         };
         externalData?: Record<string, any>;
     };
-    circleIds: string[]; // Circles this item is shared with
 }
 
 export interface List {

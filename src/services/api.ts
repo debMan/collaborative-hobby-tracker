@@ -345,7 +345,7 @@ export const categoriesService = {
           id: 'cat-' + Date.now(),
           name: category.name || 'Untitled Category',
           icon: category.icon || '📋',
-          circleId: category.circleId || null,
+          circleId: category.circleId || 'circle-personal',
           ownerId: 'user-1',
           itemCount: 0,
           createdAt: new Date(),

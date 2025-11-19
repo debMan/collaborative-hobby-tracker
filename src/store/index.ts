@@ -33,6 +33,7 @@ interface AppStore {
   isSourcesExpanded: boolean;
   isCirclesExpanded: boolean;
   isLoading: boolean;
+  isDarkMode: boolean;
 
   // Auth actions
   login: (email: string, password: string) => Promise<void>;
@@ -84,6 +85,7 @@ interface AppStore {
   closeImportModal: () => void;
   toggleMobileMenu: () => void;
   closeMobileMenu: () => void;
+  toggleDarkMode: () => void;
 }
 
 export const useStore = create<AppStore>((set, get) => ({
@@ -105,6 +107,14 @@ export const useStore = create<AppStore>((set, get) => ({
   isSourcesExpanded: false,
   isCirclesExpanded: true,
   isLoading: false,
+  isDarkMode: (() => {
+    const stored = localStorage.getItem('darkMode');
+    if (stored !== null) {
+      return stored === 'true';
+    }
+    // Default to system preference if no stored preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  })(),
 
   // Auth actions
   login: async (email: string, password: string) => {
@@ -206,7 +216,7 @@ export const useStore = create<AppStore>((set, get) => ({
   },
 
   getFilteredItems: () => {
-    const { items, selectedCategoryTab, selectedSources, selectedCircles } = get();
+    const { items, categories, selectedCategoryTab, selectedSources, selectedCircles } = get();
 
     return items.filter(item => {
       // Filter by category tab
@@ -219,12 +229,13 @@ export const useStore = create<AppStore>((set, get) => ({
         return false;
       }
 
-      // Filter by circles
+      // Filter by circles - check if item's category is in selected circles
       if (selectedCircles.length > 0) {
-        const hasMatchingCircle = item.circleIds.some(circleId =>
-          selectedCircles.includes(circleId)
-        );
-        if (!hasMatchingCircle) return false;
+        const category = categories.find(c => c.id === item.categoryId);
+        if (!category) return false;
+
+        // Check if category's circle matches selected circles
+        if (!selectedCircles.includes(category.circleId)) return false;
       }
 
       return true;
@@ -303,17 +314,27 @@ export const useStore = create<AppStore>((set, get) => ({
   },
 
   getCategoriesByFilters: () => {
-    const { categories, selectedCircles } = get();
+    const { categories, selectedCircles, items } = get();
 
     // If no circles selected, show all categories
     if (selectedCircles.length === 0) {
       return categories;
     }
 
-    // Filter categories by selected circles
-    return categories.filter(category =>
-      category.circleId === null || selectedCircles.includes(category.circleId)
-    );
+    // Get unique category IDs from items that match the selected circles
+    const categoryIds = new Set<string>();
+    items.forEach(item => {
+      const category = categories.find(c => c.id === item.categoryId);
+      if (!category) return;
+
+      // Only include if category belongs to one of the selected circles
+      if (selectedCircles.includes(category.circleId)) {
+        categoryIds.add(item.categoryId);
+      }
+    });
+
+    // Return categories that have items in the selected circles
+    return categories.filter(category => categoryIds.has(category.id));
   },
 
   createCategory: async (category: Partial<Category>) => {
@@ -469,4 +490,17 @@ export const useStore = create<AppStore>((set, get) => ({
   toggleMobileMenu: () => set((state) => ({ isMobileMenuOpen: !state.isMobileMenuOpen })),
 
   closeMobileMenu: () => set({ isMobileMenuOpen: false }),
+
+  toggleDarkMode: () => {
+    const newDarkMode = !get().isDarkMode;
+    set({ isDarkMode: newDarkMode });
+    localStorage.setItem('darkMode', String(newDarkMode));
+
+    // Apply dark mode to document root
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  },
 }));

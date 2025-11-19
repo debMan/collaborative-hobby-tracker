@@ -9,8 +9,14 @@ export default function DetailPanel() {
     return null;
   }
 
+  // Get the category for this item
   const category = categories.find(cat => cat.id === selectedItem.categoryId);
-  const itemCircles = circles.filter(circle => selectedItem.circleIds.includes(circle.id));
+
+  // Derive circle from item's category
+  const itemCircle = category?.circleId
+    ? circles.find(circle => circle.id === category.circleId)
+    : undefined;
+  const itemCircles = itemCircle ? [itemCircle] : [];
 
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this item?')) {
@@ -28,15 +34,15 @@ export default function DetailPanel() {
       />
 
       {/* Detail Panel */}
-      <aside className="fixed lg:static inset-0 lg:w-[360px] bg-white lg:border-l border-gray-200 overflow-y-auto z-50 lg:z-auto">
+      <aside className="fixed lg:static inset-0 lg:w-[360px] bg-white dark:bg-gray-900 lg:border-l border-gray-200 dark:border-gray-700 overflow-y-auto z-50 lg:z-auto">
         <div className="p-4 sm:p-6">
         {/* Close Button */}
         <div className="flex justify-end mb-4">
           <button
             onClick={closeDetailPanel}
-            className="p-1.5 hover:bg-gray-100 rounded transition"
+            className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </button>
         </div>
 
@@ -51,13 +57,13 @@ export default function DetailPanel() {
             }}
           />
         ) : (
-          <div className="w-full h-48 bg-gray-100 rounded-lg mb-5 flex items-center justify-center text-gray-400 text-sm">
+          <div className="w-full h-48 bg-gray-100 dark:bg-gray-800 rounded-lg mb-5 flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm">
             No image available
           </div>
         )}
 
         {/* Title */}
-        <h3 className="text-lg font-normal text-gray-900 mb-5">
+        <h3 className="text-lg font-normal text-gray-900 dark:text-gray-100 mb-5">
           {selectedItem.title}
         </h3>
 
@@ -66,10 +72,10 @@ export default function DetailPanel() {
           {/* Category */}
           {category && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Category
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 {category.icon} {category.name}
               </div>
             </div>
@@ -78,14 +84,14 @@ export default function DetailPanel() {
           {/* Circles */}
           {itemCircles.length > 0 && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Shared With
               </div>
               <div className="flex flex-wrap gap-2">
                 {itemCircles.map((circle) => (
                   <span
                     key={circle.id}
-                    className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
+                    className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full"
                   >
                     {circle.icon} {circle.name}
                   </span>
@@ -97,17 +103,17 @@ export default function DetailPanel() {
           {/* Source */}
           {selectedItem.source && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Source
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 {selectedItem.source.charAt(0).toUpperCase() + selectedItem.source.slice(1)}
                 {selectedItem.sourceUrl && (
                   <a
                     href={selectedItem.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-2 text-primary-600 hover:underline"
+                    className="ml-2 text-primary-600 dark:text-primary-400 hover:underline"
                   >
                     View original
                   </a>
@@ -118,10 +124,10 @@ export default function DetailPanel() {
 
           {/* Added */}
           <div>
-            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+            <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
               Added
             </div>
-            <div className="text-sm text-gray-900">
+            <div className="text-sm text-gray-900 dark:text-gray-100">
               {formatDistanceToNow(new Date(selectedItem.addedAt), { addSuffix: true })}
             </div>
           </div>
@@ -129,10 +135,10 @@ export default function DetailPanel() {
           {/* Due Date */}
           {selectedItem.dueDate && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Due Date
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 {format(new Date(selectedItem.dueDate), 'MMM d, yyyy')}
               </div>
             </div>
@@ -141,10 +147,10 @@ export default function DetailPanel() {
           {/* Completed */}
           {selectedItem.isCompleted && selectedItem.completedAt && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Completed
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 {format(new Date(selectedItem.completedAt), 'MMM d, yyyy')}
               </div>
             </div>
@@ -153,14 +159,14 @@ export default function DetailPanel() {
           {/* Tags */}
           {selectedItem.tags && selectedItem.tags.length > 0 && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Tags
               </div>
               <div className="flex flex-wrap gap-2">
                 {selectedItem.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 text-xs bg-primary-50 text-primary-700 rounded-full"
+                    className="px-2 py-1 text-xs bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full"
                   >
                     {tag}
                   </span>
@@ -172,10 +178,10 @@ export default function DetailPanel() {
           {/* Description */}
           {selectedItem.description && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Description
               </div>
-              <div className="text-sm text-gray-700 leading-relaxed">
+              <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 {selectedItem.description}
               </div>
             </div>
@@ -184,10 +190,10 @@ export default function DetailPanel() {
           {/* Metadata */}
           {selectedItem.metadata?.rating && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Rating
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 ⭐ {selectedItem.metadata.rating}/10
               </div>
             </div>
@@ -195,10 +201,10 @@ export default function DetailPanel() {
 
           {selectedItem.metadata?.location && (
             <div>
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
                 Location
               </div>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm text-gray-900 dark:text-gray-100">
                 📍 {selectedItem.metadata.location.address}
               </div>
             </div>
@@ -206,10 +212,10 @@ export default function DetailPanel() {
         </div>
 
         {/* Actions */}
-        <div className="mt-8 pt-6 border-t border-gray-200 space-y-2">
+        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-2">
           <button
             onClick={handleDelete}
-            className="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
+            className="w-full px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition"
           >
             Delete Item
           </button>

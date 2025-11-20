@@ -45,11 +45,12 @@
 
 **TDD: Write handler tests first**
 
-1. Item service (business logic)
-2. Item handlers (HTTP layer)
-3. Routes setup with Gin
-4. Authorization checks (user owns item)
-5. Integration tests (end-to-end)
+1. Auth handlers (HTTP layer)
+2. Item service (business logic)
+3. Item handlers (HTTP layer)
+4. Routes setup with Gin
+5. Authorization checks (user owns item)
+6. Integration tests (end-to-end)
 
 ### Phase 5: Categories & Circles
 
@@ -60,7 +61,15 @@
 3. Circle membership & access control
 4. Sharing logic (invite links, email invites)
 
-### Phase 6: AI Integration
+### Phase 6: Import Endpoint
+
+**TDD: Tests first**
+
+1. Import service (Simple static manual data without AI suggestions)
+2. Import handlers
+3. Integration tests (end-to-end)
+
+### Phase 7: AI Integration
 
 **TDD: Mock AI responses in tests**
 
@@ -69,7 +78,7 @@
 3. Tag suggestion service
 4. Configuration for different providers (Ollama)
 
-### Phase 7: Content Fetchers
+### Phase 8: Content Fetchers
 
 **TDD: Mock external HTTP calls**
 
@@ -79,21 +88,21 @@
 4. Generic web scraper (Open Graph)
 5. Fetcher registry
 
-### Phase 8: Import Endpoint
+### Phase 9: Import Enhancement
 
-**TDD: Integration tests**
+**TDD: Tests first, Mock data and integration tests**
 
-1. Import service (orchestrates AI + fetchers)
-2. Import handler
+1. Update import service (orchestrates AI + fetchers)
+2. Update Import handlers for AI + fetchers
 3. End-to-end import flow test
 
-### Phase 9: Tags & Final Endpoints
+### Phase 10: Tags & Final Endpoints
 
 1. Tag service + handlers
 2. Tag learning logic
 3. Final integration tests
 
-### Phase 10: Polish & Documentation
+### Phase 11: Polish & Documentation
 
 1. Error handling improvements
 2. API documentation
@@ -108,3 +117,9 @@
 - Docker Compose for local development
 - Configuration examples
 - API documentation
+
+## TODOS form developer
+
+- Move testutil to somewhere else to be more common
+- Move indexes to each repository
+- move `backend/internal/middleware` to `backend/internal/api/middleware`

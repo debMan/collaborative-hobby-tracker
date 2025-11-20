@@ -7,7 +7,12 @@ import (
 	"time"
 
 	"github.com/debMan/collaborative-hobby-tracker/backend/config"
-	"github.com/debMan/collaborative-hobby-tracker/backend/internal/api/middleware"
+	"github.com/debMan/collaborative-hobby-tracker/backend/internal/api/handlers"
+	apimiddleware "github.com/debMan/collaborative-hobby-tracker/backend/internal/api/middleware"
+	authmiddleware "github.com/debMan/collaborative-hobby-tracker/backend/internal/middleware"
+	"github.com/debMan/collaborative-hobby-tracker/backend/internal/repository"
+	authservice "github.com/debMan/collaborative-hobby-tracker/backend/internal/service/auth"
+	"github.com/debMan/collaborative-hobby-tracker/backend/internal/service/item"
 	"github.com/debMan/collaborative-hobby-tracker/backend/pkg/database"
 	"github.com/debMan/collaborative-hobby-tracker/backend/pkg/logger"
 	"github.com/gin-gonic/gin"
@@ -35,9 +40,9 @@ func NewServer(cfg *config.Config, log *logger.Logger, db *database.MongoDB) *Se
 	router := gin.New()
 
 	// Global middleware
-	router.Use(middleware.Logger(log))
-	router.Use(middleware.Recovery(log))
-	router.Use(middleware.CORS(cfg.Server.AllowedOrigins))
+	router.Use(apimiddleware.Logger(log))
+	router.Use(apimiddleware.Recovery(log))
+	router.Use(apimiddleware.CORS(cfg.Server.AllowedOrigins))
 
 	s := &Server{
 		config: cfg,
@@ -57,23 +62,73 @@ func (s *Server) setupRoutes() {
 	// Health check endpoint
 	s.router.GET("/health", s.healthCheck)
 
+	// Create repositories
+	userRepo := repository.NewUserRepository(s.db)
+	itemRepo := repository.NewHobbyItemRepository(s.db)
+
+	// Create auth services
+	jwtExpiration := time.Duration(s.config.Auth.JWTExpiration) * time.Minute
+	authService := authservice.NewService(userRepo, s.config.Auth.JWTSecret, jwtExpiration)
+
+	// Create OAuth services
+	googleOAuth := authservice.NewGoogleOAuthService(&authservice.OAuthConfig{
+		ClientID:     s.config.OAuth.Google.ClientID,
+		ClientSecret: s.config.OAuth.Google.ClientSecret,
+		RedirectURL:  s.config.OAuth.Google.RedirectURL,
+	})
+
+	githubOAuth := authservice.NewGitHubOAuthService(&authservice.OAuthConfig{
+		ClientID:     s.config.OAuth.GitHub.ClientID,
+		ClientSecret: s.config.OAuth.GitHub.ClientSecret,
+		RedirectURL:  s.config.OAuth.GitHub.RedirectURL,
+	})
+
+	// Create other services
+	itemService := item.NewService(itemRepo)
+
+	// Create handlers
+	authHandler := handlers.NewAuthHandler(authService, googleOAuth, githubOAuth, s.config.Auth.JWTSecret)
+	itemHandler := handlers.NewItemHandler(itemService)
+
 	// API v1 routes
 	v1 := s.router.Group("/api/v1")
 	{
-		// TODO: Add auth routes
-		// TODO: Add items routes
-		// TODO: Add categories routes
-		// TODO: Add circles routes
-		// TODO: Add tags routes
-		// TODO: Add import routes
-
-		// Ping endpoint
+		// Ping endpoint (public)
 		v1.GET("/ping", func(c *gin.Context) {
 			c.JSON(http.StatusOK, gin.H{
 				"message": "pong",
 				"version": s.config.App.Version,
 			})
 		})
+
+		// Auth routes (public)
+		auth := v1.Group("/auth")
+		{
+			auth.POST("/register", authHandler.Register)
+			auth.POST("/login", authHandler.Login)
+			auth.GET("/google", authHandler.GoogleAuth)
+			auth.GET("/google/callback", authHandler.GoogleCallback)
+			auth.GET("/github", authHandler.GitHubAuth)
+			auth.GET("/github/callback", authHandler.GitHubCallback)
+		}
+
+		// Protected routes (require authentication)
+		protected := v1.Group("")
+		protected.Use(authmiddleware.AuthMiddleware(s.config.Auth.JWTSecret))
+		{
+			// Items routes
+			protected.POST("/items", itemHandler.CreateItem)
+			protected.GET("/items", itemHandler.GetUserItems)
+			protected.GET("/items/:id", itemHandler.GetItemByID)
+			protected.PUT("/items/:id", itemHandler.UpdateItem)
+			protected.DELETE("/items/:id", itemHandler.DeleteItem)
+			protected.PATCH("/items/:id/toggle", itemHandler.ToggleItemCompletion)
+
+			// TODO: Add categories routes
+			// TODO: Add circles routes
+			// TODO: Add tags routes
+			// TODO: Add import routes
+		}
 	}
 }
 

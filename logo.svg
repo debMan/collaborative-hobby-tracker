@@ -1,33 +1,76 @@
 <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle -->
-  <circle cx="100" cy="100" r="95" fill="#1a73e8" opacity="0.1"/>
+  <!-- Warm gradient background -->
+  <defs>
+    <linearGradient id="warmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
 
-  <!-- Main stash box/container -->
-  <rect x="50" y="60" width="100" height="90" rx="8" fill="#1a73e8" stroke="#1967d2" stroke-width="3"/>
+  <circle cx="100" cy="100" r="95" fill="url(#warmGradient)"/>
 
-  <!-- Organized items inside (representing hobbies) -->
-  <g opacity="0.9">
-    <!-- Item 1 - checked -->
-    <circle cx="70" cy="85" r="6" fill="white" stroke="white" stroke-width="1.5"/>
-    <polyline points="68,85 70,87 72,83" stroke="#1a73e8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <line x1="85" y1="85" x2="135" y2="85" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <!-- Central stash container with hobby items -->
+  <rect x="55" y="65" width="90" height="75" rx="8" fill="#FF6B35" stroke="#E85D2A" stroke-width="3"/>
 
-    <!-- Item 2 - unchecked -->
-    <circle cx="70" cy="105" r="6" fill="transparent" stroke="white" stroke-width="2"/>
-    <line x1="85" y1="105" x2="125" y2="105" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <!-- Diverse hobby icons inside container -->
+  <g opacity="0.95">
+    <!-- Row 1: Movie (film) + Music (note) -->
+    <rect x="68" y="78" width="16" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="70" y="80" width="3" height="8" fill="#FF6B35"/>
+    <rect x="74" y="80" width="3" height="8" fill="#FF6B35"/>
+    <rect x="78" y="80" width="3" height="8" fill="#FF6B35"/>
 
-    <!-- Item 3 - unchecked -->
-    <circle cx="70" cy="125" r="6" fill="transparent" stroke="white" stroke-width="2"/>
-    <line x1="85" y1="125" x2="130" y2="125" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 105 78 Q 105 82 108 82 L 108 88 Q 108 91 105 91 M 108 85 L 113 85"
+          stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Row 2: Food (utensils) + Travel (map pin) -->
+    <g transform="translate(68, 98)">
+      <line x1="5" y1="0" x2="5" y2="12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="11" y1="0" x2="11" y2="12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="11" cy="3" r="2" fill="white"/>
+    </g>
+
+    <g transform="translate(103, 95)">
+      <path d="M 8 0 Q 8 8 8 8 L 8 12 M 8 8 Q 4 6 2 8 Q 4 10 8 8 Q 12 10 14 8 Q 12 6 8 8"
+            fill="white" stroke="white" stroke-width="1"/>
+    </g>
+
+    <!-- Row 3: Activity (star) + Checkmark -->
+    <path d="M 73 120 L 75 126 L 81 126 L 76 130 L 78 136 L 73 132 L 68 136 L 70 130 L 65 126 L 71 126 Z"
+          fill="white"/>
+
+    <circle cx="110" cy="128" r="7" fill="white" stroke="white" stroke-width="1.5"/>
+    <polyline points="106,128 109,131 114,124" stroke="#FF6B35" stroke-width="2.5" fill="none"
+              stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
-  <!-- Collaborative element - small dots representing people/circles -->
+  <!-- Collaboration circles - three interconnected people/circles -->
   <g>
-    <circle cx="120" cy="45" r="8" fill="#1a73e8" stroke="white" stroke-width="2"/>
-    <circle cx="140" cy="50" r="7" fill="#1967d2" stroke="white" stroke-width="2"/>
-    <circle cx="133" cy="35" r="6" fill="#4285f4" stroke="white" stroke-width="2"/>
+    <!-- Person 1 -->
+    <circle cx="35" cy="100" r="12" fill="#F7931E" stroke="white" stroke-width="2.5"/>
+    <circle cx="35" cy="96" r="4" fill="white"/>
+    <path d="M 28 106 Q 35 102 42 106" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Person 2 -->
+    <circle cx="165" cy="100" r="12" fill="#FFA500" stroke="white" stroke-width="2.5"/>
+    <circle cx="165" cy="96" r="4" fill="white"/>
+    <path d="M 158 106 Q 165 102 172 106" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Person 3 -->
+    <circle cx="100" cy="35" r="12" fill="#FF8C42" stroke="white" stroke-width="2.5"/>
+    <circle cx="100" cy="31" r="4" fill="white"/>
+    <path d="M 93 41 Q 100 37 107 41" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
   </g>
 
-  <!-- Top lid/opening of the stash box -->
-  <path d="M 50 60 Q 100 45 150 60" stroke="#1967d2" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Connection lines showing collaboration -->
+  <g opacity="0.4">
+    <line x1="47" y1="100" x2="55" y2="100" stroke="#F7931E" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <line x1="145" y1="100" x2="153" y2="100" stroke="#FFA500" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <line x1="100" y1="47" x2="100" y2="65" stroke="#FF8C42" stroke-width="2.5" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Sharing/collaboration icon on top of container -->
+  <circle cx="100" cy="58" r="8" fill="#FFB84D" stroke="white" stroke-width="2"/>
+  <path d="M 97 58 L 100 61 L 103 58 M 100 61 L 100 55" stroke="white" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

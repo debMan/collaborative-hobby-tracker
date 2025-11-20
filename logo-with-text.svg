@@ -1,36 +1,83 @@
-<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Logo icon -->
+<svg width="450" height="130" viewBox="0 0 450 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="warmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:0.15" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo icon section -->
   <g>
-    <!-- Background circle -->
-    <circle cx="60" cy="60" r="50" fill="#1a73e8" opacity="0.1"/>
+    <circle cx="65" cy="65" r="55" fill="url(#warmGrad)"/>
 
-    <!-- Stash box -->
-    <rect x="35" y="40" width="50" height="45" rx="4" fill="#1a73e8"/>
+    <!-- Central container with hobbies -->
+    <rect x="43" y="48" width="44" height="36" rx="4" fill="#FF6B35"/>
 
-    <!-- Items inside -->
-    <g opacity="0.9">
-      <!-- Checked item -->
-      <circle cx="45" cy="52" r="3" fill="white"/>
-      <polyline points="43.5,52 44.5,53 46,50.5" stroke="#1a73e8" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <line x1="52" y1="52" x2="75" y2="52" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Hobby icons -->
+    <g opacity="0.95">
+      <!-- Movie -->
+      <rect x="48" y="54" width="8" height="6" rx="1" fill="white" opacity="0.9"/>
+      <rect x="49" y="55" width="1.5" height="4" fill="#FF6B35"/>
+      <rect x="51" y="55" width="1.5" height="4" fill="#FF6B35"/>
+      <rect x="53" y="55" width="1.5" height="4" fill="#FF6B35"/>
 
-      <!-- Unchecked items -->
-      <circle cx="45" cy="62" r="3" fill="transparent" stroke="white" stroke-width="1.5"/>
-      <line x1="52" y1="62" x2="72" y2="62" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <!-- Music note -->
+      <path d="M 66 54 Q 66 56 67.5 56 L 67.5 60 M 67.5 58 L 70 58"
+            stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-      <circle cx="45" cy="72" r="3" fill="transparent" stroke="white" stroke-width="1.5"/>
-      <line x1="52" y1="72" x2="70" y2="72" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <!-- Food -->
+      <line x1="50" y1="67" x2="50" y2="73" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="53.5" y1="67" x2="53.5" y2="73" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="53.5" cy="68" r="1" fill="white"/>
+
+      <!-- Travel pin -->
+      <path d="M 68 66 Q 68 70 68 70 L 68 73 M 68 70 Q 66 69 65 70 Q 66 71 68 70 Q 70 71 71 70 Q 70 69 68 70"
+            fill="white" stroke="white" stroke-width="0.8"/>
+
+      <!-- Star -->
+      <path d="M 50 78 L 51 81 L 54 81 L 51.5 83 L 52.5 86 L 50 84 L 47.5 86 L 48.5 83 L 46 81 L 49 81 Z"
+            fill="white"/>
+
+      <!-- Checkmark -->
+      <circle cx="68" cy="81" r="3.5" fill="white"/>
+      <polyline points="66,81 67.5,82.5 70,79" stroke="#FF6B35" stroke-width="1.5" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"/>
     </g>
 
-    <!-- Collaborative dots -->
-    <circle cx="72" cy="30" r="4" fill="#1a73e8" stroke="white" stroke-width="1.5"/>
-    <circle cx="82" cy="33" r="3.5" fill="#1967d2" stroke="white" stroke-width="1.5"/>
-    <circle cx="78" cy="25" r="3" fill="#4285f4" stroke="white" stroke-width="1.5"/>
+    <!-- Three people (collaboration) -->
+    <g>
+      <!-- Left person -->
+      <circle cx="22" cy="65" r="8" fill="#F7931E" stroke="white" stroke-width="2"/>
+      <circle cx="22" cy="62" r="2.5" fill="white"/>
+      <path d="M 17 70 Q 22 67 27 70" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+      <!-- Right person -->
+      <circle cx="108" cy="65" r="8" fill="#FFA500" stroke="white" stroke-width="2"/>
+      <circle cx="108" cy="62" r="2.5" fill="white"/>
+      <path d="M 103 70 Q 108 67 113 70" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+      <!-- Top person -->
+      <circle cx="65" cy="22" r="7" fill="#FF8C42" stroke="white" stroke-width="2"/>
+      <circle cx="65" cy="19" r="2.2" fill="white"/>
+      <path d="M 60 26 Q 65 23 70 26" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Connection lines -->
+    <g opacity="0.35">
+      <line x1="30" y1="65" x2="43" y2="65" stroke="#F7931E" stroke-width="2" stroke-dasharray="3,2"/>
+      <line x1="87" y1="65" x2="100" y2="65" stroke="#FFA500" stroke-width="2" stroke-dasharray="3,2"/>
+      <line x1="65" y1="29" x2="65" y2="48" stroke="#FF8C42" stroke-width="2" stroke-dasharray="3,2"/>
+    </g>
+
+    <!-- Share badge -->
+    <circle cx="65" cy="42" r="5" fill="#FFB84D" stroke="white" stroke-width="1.5"/>
+    <path d="M 63 42 L 65 44 L 67 42 M 65 44 L 65 40" stroke="white" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <!-- "Stash" text -->
-  <text x="130" y="70" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#1a73e8">Stash</text>
+  <text x="145" y="75" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#FF6B35">Stash</text>
 
   <!-- Tagline -->
-  <text x="130" y="92" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#5f6368">Collaborative Hobby Tracker</text>
+  <text x="145" y="98" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#5f6368">Collaborative Hobby Tracker</text>
 </svg>

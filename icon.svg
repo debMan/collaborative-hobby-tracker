@@ -1,28 +1,57 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Compact icon version for favicon -->
-  <rect width="64" height="64" rx="12" fill="#1a73e8"/>
+  <!-- Compact icon with warm orange background -->
+  <rect width="64" height="64" rx="12" fill="#FF6B35"/>
 
-  <!-- Stash box -->
-  <rect x="16" y="20" width="32" height="28" rx="3" fill="white" opacity="0.95"/>
+  <!-- Central hobby container -->
+  <rect x="18" y="22" width="28" height="24" rx="3" fill="white" opacity="0.95"/>
 
-  <!-- Items inside -->
+  <!-- Hobby icons inside (simplified) -->
   <g>
-    <!-- Checked item -->
-    <circle cx="22" cy="28" r="2.5" fill="#1a73e8" stroke="#1a73e8" stroke-width="1"/>
-    <polyline points="20.5,28 21.5,29 23,26.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <line x1="27" y1="28" x2="42" y2="28" stroke="#1a73e8" stroke-width="2" stroke-linecap="round"/>
+    <!-- Movie icon -->
+    <rect x="22" y="26" width="6" height="5" rx="1" fill="#FF6B35" opacity="0.9"/>
 
-    <!-- Unchecked item -->
-    <circle cx="22" cy="36" r="2.5" fill="transparent" stroke="#1a73e8" stroke-width="1.5"/>
-    <line x1="27" y1="36" x2="40" y2="36" stroke="#1a73e8" stroke-width="2" stroke-linecap="round"/>
+    <!-- Music note -->
+    <path d="M 36 26 Q 36 28 37 28 L 37 32 M 37 30 L 40 30"
+          stroke="#FF6B35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-    <!-- Unchecked item -->
-    <circle cx="22" cy="44" r="2.5" fill="transparent" stroke="#1a73e8" stroke-width="1.5"/>
-    <line x1="27" y1="44" x2="38" y2="44" stroke="#1a73e8" stroke-width="2" stroke-linecap="round"/>
+    <!-- Food/utensils -->
+    <line x1="24" y1="35" x2="24" y2="40" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="27" y1="35" x2="27" y2="40" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="27" cy="36" r="1" fill="#FF6B35"/>
+
+    <!-- Checkmark (completion) -->
+    <circle cx="38" cy="38" r="3" fill="#FF6B35"/>
+    <polyline points="36.5,38 37.5,39 39.5,36.5" stroke="white" stroke-width="1.5" fill="none"
+              stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
-  <!-- Collaborative dots -->
-  <circle cx="42" cy="14" r="3" fill="white" opacity="0.9"/>
-  <circle cx="50" cy="16" r="2.5" fill="white" opacity="0.8"/>
-  <circle cx="47" cy="10" r="2" fill="white" opacity="0.7"/>
+  <!-- Three collaboration people icons -->
+  <g>
+    <!-- Person 1 - left -->
+    <circle cx="12" cy="32" r="5" fill="#FFA500" stroke="white" stroke-width="1.5"/>
+    <circle cx="12" cy="30" r="1.5" fill="white"/>
+    <path d="M 9 35 Q 12 33 15 35" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+    <!-- Person 2 - right -->
+    <circle cx="52" cy="32" r="5" fill="#F7931E" stroke="white" stroke-width="1.5"/>
+    <circle cx="52" cy="30" r="1.5" fill="white"/>
+    <path d="M 49 35 Q 52 33 55 35" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+
+    <!-- Person 3 - top -->
+    <circle cx="32" cy="10" r="4.5" fill="#FF8C42" stroke="white" stroke-width="1.5"/>
+    <circle cx="32" cy="8.5" r="1.3" fill="white"/>
+    <path d="M 29 12.5 Q 32 11 35 12.5" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Connection lines -->
+  <g opacity="0.3">
+    <line x1="17" y1="32" x2="18" y2="32" stroke="#FFA500" stroke-width="1.5" stroke-dasharray="2,1"/>
+    <line x1="46" y1="32" x2="52" y2="32" stroke="#F7931E" stroke-width="1.5" stroke-dasharray="2,1"/>
+    <line x1="32" y1="14.5" x2="32" y2="22" stroke="#FF8C42" stroke-width="1.5" stroke-dasharray="2,1"/>
+  </g>
+
+  <!-- Share icon badge -->
+  <circle cx="32" cy="18" r="3.5" fill="#FFB84D" stroke="white" stroke-width="1.2"/>
+  <path d="M 30.5 18 L 32 19.5 L 33.5 18 M 32 19.5 L 32 16.5" stroke="white" stroke-width="1.3"
+        stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

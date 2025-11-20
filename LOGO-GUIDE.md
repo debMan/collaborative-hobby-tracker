@@ -1,62 +1,106 @@
 # Stash - Logo Design Guide
 
-## Logo Concept
+## Logo Concept (Redesigned)
 
-The Stash logo represents the core values of the Collaborative Hobby Tracker:
+The Stash logo represents the core values of the Collaborative Hobby Tracker with emphasis on:
+
+1. **Hobby Tracking** - Primary focus
+2. **Collaboration** - Sharing and connecting with others
+3. **Warmth & Friendliness** - Approachable design
 
 ### Design Elements
 
-1. **The Box/Container** - Represents "stashing" or collecting hobbies
-   - Rounded corners for a friendly, modern feel
-   - Blue color (#1a73e8) from the app's design system
+1. **The Central Container** - Represents "stashing" hobbies in one organized place
+   - Warm orange color creates an inviting, friendly feel
+   - Rounded corners for modern, approachable aesthetic
 
-2. **Checklist Items** - Symbolizes hobby tracking and organization
-   - One checked item (completed hobby)
-   - Two unchecked items (pending hobbies)
-   - Clean, minimal lines reflecting the app's distraction-free philosophy
+2. **Diverse Hobby Icons** - Core feature showcasing various hobby types
+   - **Film/Movie** icon (top left) - Movies to watch
+   - **Music Note** (top right) - Music to listen to
+   - **Utensils/Food** (middle left) - Restaurants and food to try
+   - **Map Pin** (middle right) - Travel destinations
+   - **Star** (bottom left) - Activities and experiences
+   - **Checkmark** (bottom right) - Completion tracking
 
-3. **Collaborative Dots** - Three small circles representing:
-   - Different user circles (Partner, Friends, Family)
-   - The collaborative nature of the app
-   - Community and sharing features
+3. **Three Collaborative People** - Emphasizes the collaborative aspect
+   - Left, right, and top positions surrounding the stash
+   - Represent different user circles (Partner, Friends, Family, Colleagues)
+   - Connected with dashed lines showing active collaboration
+   - Different warm shades showing diversity
 
-### Color Palette
+4. **Share Icon Badge** - Collaboration indicator
+   - Upload/share symbol on top of the container
+   - Golden accent color (#FFB84D)
+   - Represents the sharing and import features
 
-- **Primary Blue**: `#1a73e8` - Main brand color
-- **Dark Blue**: `#1967d2` - Accents and depth
-- **Light Blue**: `#4285f4` - Highlights
+### Color Palette (Warm Theme)
+
+- **Primary Orange**: `#FF6B35` - Main brand color (energetic, friendly)
+- **Golden Orange**: `#F7931E` - Secondary accent
+- **Warm Yellow**: `#FFA500` - Bright highlights
+- **Coral Orange**: `#FF8C42` - Tertiary accent
+- **Gold**: `#FFB84D` - Special highlights (share icon)
 - **White**: `#ffffff` - Contrast and clarity
+
+**Why Warm Colors?**
+- **Inviting & Friendly**: Orange conveys enthusiasm and creativity
+- **Energetic**: Reflects the active nature of pursuing hobbies
+- **Social**: Warm colors encourage collaboration and sharing
+- **Approachable**: Less corporate than blue, more personal
 
 ## Logo Variations
 
 ### 1. `logo.svg` (200×200)
-- **Use for**: Website headers, documentation, social media
-- **Features**: Full detail, circular background, all elements visible
+- **Use for**: Website headers, documentation, social media profiles
+- **Features**:
+  - Full detail with gradient background
+  - All hobby icons visible
+  - Three people showing collaboration
+  - Connection lines and share badge
 - **Format**: SVG (scalable)
 
 ### 2. `icon.svg` (64×64)
 - **Use for**: Favicon, app icons, small UI elements
-- **Features**: Compact, high contrast, simplified details
+- **Features**:
+  - Compact design optimized for small sizes
+  - Simplified hobby icons (4 main types)
+  - Three collaborative people
+  - High contrast for visibility
 - **Format**: SVG (can be converted to ICO/PNG)
 
-### 3. `logo-with-text.svg` (400×120)
-- **Use for**: Main branding, marketing materials, splash screens
-- **Features**: Logo + "Stash" wordmark + tagline
+### 3. `logo-with-text.svg` (450×130)
+- **Use for**: Main branding, marketing materials, website headers
+- **Features**:
+  - Logo icon + "Stash" wordmark in matching orange
+  - Tagline: "Collaborative Hobby Tracker"
+  - Perfect for landing pages and presentations
+- **Format**: SVG (scalable)
+
+### 4. `logo-monochrome.svg` (200×200)
+- **Use for**: Printing, dark mode variations, single-color applications
+- **Features**:
+  - Black and white version
+  - Maintains all design elements
+  - Grayscale shading for depth
 - **Format**: SVG (scalable)
 
 ## Usage Guidelines
 
 ### Do's
-✅ Use the logo on white or light backgrounds
+✅ Use the logo on white or light backgrounds for best visibility
 ✅ Maintain the aspect ratio when scaling
-✅ Ensure minimum size of 32×32 pixels for icon
-✅ Use official blue colors for brand consistency
+✅ Ensure minimum size of 32×32 pixels for icon version
+✅ Use official warm orange colors for brand consistency
+✅ Use monochrome version for print materials
+✅ Maintain clear space around the logo (at least 10% of logo width)
 
 ### Don'ts
 ❌ Don't distort or stretch the logo
-❌ Don't change the colors (except for monochrome versions)
-❌ Don't add effects like shadows or gradients
-❌ Don't place on busy backgrounds
+❌ Don't change the warm color palette (except for monochrome)
+❌ Don't add drop shadows, gradients, or effects
+❌ Don't place on busy or dark orange backgrounds
+❌ Don't rotate or flip the logo
+❌ Don't separate the hobby icons from the container
 
 ## Converting for Different Platforms
 
@@ -90,34 +134,118 @@ convert icon.svg -resize 324x324 android-icon-324.png  # xxhdpi
 convert icon.svg -resize 216x216 android-icon-216.png  # xhdpi
 ```
 
+### Web Formats
+```bash
+# For web use (retina displays)
+convert logo.svg -resize 400x400 logo-2x.png
+convert logo.svg -resize 200x200 logo-1x.png
+
+# For social media
+convert logo.svg -resize 512x512 social-icon.png
+convert logo-with-text.svg -resize 1200x630 social-banner.png  # Open Graph
+```
+
 ## Design Philosophy Alignment
 
-The logo embodies the app's core principles:
+The logo embodies the app's core values:
 
-- **Simplicity**: Clean, minimal design without clutter
-- **Content-First**: The checklist items are the focal point
-- **List-Based**: Linear, organized representation
-- **Professional**: Mature color scheme and balanced composition
-- **Collaborative**: Visual representation of multiple users/circles
+### Primary Focus: Hobby Tracking
+- **Six diverse hobby icons** prominently displayed
+- Film, music, food, travel, activities, and completion tracking
+- Clear representation of the app's main purpose
+- Visual variety showing the breadth of trackable hobbies
+
+### Strong Collaboration Emphasis
+- **Three people icons** surrounding the central stash
+- Connection lines showing active collaboration
+- Share/upload badge highlighting the import/export feature
+- Different colored people representing diverse user circles
+
+### Warm & Approachable
+- **Warm orange palette** replaces corporate blue
+- Friendly, energetic colors encourage engagement
+- Social and inviting aesthetic
+- Reflects the personal nature of hobby tracking
+
+### Simplicity & Clarity
+- Clean iconography without excessive detail
+- Clear visual hierarchy
+- Easy to understand at any size
+- Maintains distraction-free philosophy
+
+## Color Psychology
+
+**Orange (#FF6B35)** - Primary brand color
+- Represents: Creativity, enthusiasm, success, encouragement
+- Perfect for: A social app about personal interests and hobbies
+- Emotion: Friendly, energetic, optimistic
+
+**Golden Tones (#F7931E, #FFA500, #FFB84D)**
+- Represents: Warmth, collaboration, achievement
+- Perfect for: Highlighting sharing and completion features
+- Emotion: Welcoming, cheerful, supportive
+
+## Brand Integration
+
+These logos work seamlessly with:
+- Material Design principles (with warm color adaptation)
+- The app's list-based UI components
+- Minimal, distraction-free interface
+- Both light and dark mode interfaces
+
+### Tailwind CSS Integration
+
+Update your Tailwind config to use the warm color scheme:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#FFF5F0',
+          100: '#FFE8DC',
+          200: '#FFD1B9',
+          300: '#FFB996',
+          400: '#FFA173',
+          500: '#FF6B35',  // Main brand color
+          600: '#E85D2A',
+          700: '#CC501E',
+          800: '#B04314',
+          900: '#94360B',
+        },
+        accent: {
+          DEFAULT: '#F7931E',
+          light: '#FFA500',
+          gold: '#FFB84D',
+        }
+      }
+    }
+  }
+}
+```
+
+## Accessibility
+
+- **Color Contrast**: Orange on white provides 3.8:1 ratio (WCAG AA for large text)
+- **Icon Clarity**: Hobby icons are distinguishable even at small sizes
+- **Monochrome Version**: Available for high-contrast needs
+- **Alternative Text**: Always use "Stash - Collaborative Hobby Tracker" as alt text
 
 ## File Formats
 
 All logos are provided as SVG (Scalable Vector Graphics) for:
 - Infinite scalability without quality loss
-- Small file size
+- Small file size (optimized for web)
 - Easy editing and customization
 - Browser-native support
-
-## Brand Integration
-
-These logos are designed to work seamlessly with:
-- Material Design principles
-- The app's blue color scheme
-- List-based UI components
-- Minimal, distraction-free interface
+- Professional print quality at any size
 
 ---
 
-**Created for**: Stash - Collaborative Hobby Tracker
+**App Name**: Stash - Collaborative Hobby Tracker
+**Design Focus**: Hobby tracking with strong collaboration emphasis
+**Color Theme**: Warm oranges (friendly, energetic, social)
 **Design Date**: 2025-11-20
-**Version**: 1.0
+**Version**: 2.0 (Redesigned)

@@ -93,13 +93,13 @@ func Load() (*Config, error) {
 		fmt.Printf("Warning: config.yaml not found, using defaults and env vars: %v\n", err)
 	}
 
-	// Load environment variables with prefix "HT_" (Hobby Tracker)
+	// Load environment variables with prefix "CHT_" (Collaborative Hobby Tracker)
 	// Environment variables override config file values
-	// Example: HT_SERVER_PORT=8080 overrides server.port
-	err := k.Load(env.Provider("HT_", ".", func(s string) string {
-		// Convert HT_SERVER_PORT to server.port
+	// Example: CHT_SERVER_PORT=8080 overrides server.port
+	err := k.Load(env.Provider("CHT_", ".", func(s string) string {
+		// Convert CHT_SERVER_PORT to server.port
 		return strings.Replace(strings.ToLower(
-			strings.TrimPrefix(s, "HT_")), "_", ".", -1)
+			strings.TrimPrefix(s, "CHT_")), "_", ".", -1)
 	}), nil)
 	if err != nil {
 		return nil, fmt.Errorf("error loading environment variables: %w", err)

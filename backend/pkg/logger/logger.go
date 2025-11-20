@@ -15,7 +15,7 @@ type Logger struct {
 // New creates a new logger instance
 // Environment: development = human-readable, production = JSON
 func New() *Logger {
-	env := os.Getenv("HT_APP_ENVIRONMENT")
+	env := os.Getenv("CHT_APP_ENVIRONMENT")
 	if env == "" {
 		env = "development"
 	}

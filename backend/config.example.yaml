@@ -20,7 +20,7 @@ database:
   pool_size: 10
 
 auth:
-  jwt_secret: "change-me-in-production"  # Override with HT_AUTH_JWT_SECRET env var
+  jwt_secret: "change-me-in-production"  # Override with CHT_AUTH_JWT_SECRET env var
   jwt_expiration: 15  # minutes
   refresh_expiration: 7  # days
   password_min_length: 8

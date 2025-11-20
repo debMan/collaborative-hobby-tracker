@@ -62,9 +62,9 @@ backend/
 4. **Set environment variables** (optional, overrides config.yaml):
 
    ```bash
-   export HT_AUTH_JWT_SECRET="your-secret-key"
-   export HT_DATABASE_URI="mongodb://localhost:27017"
-   export HT_AI_BASE_URL="http://localhost:11434"
+   export CHT_AUTH_JWT_SECRET="your-secret-key"
+   export CHT_DATABASE_URI="mongodb://localhost:27017"
+   export CHT_AI_BASE_URL="http://localhost:11434"
    # ... more variables as needed
    ```
 
@@ -98,15 +98,15 @@ This uses [Air](https://github.com/cosmtrek/air) for automatic reloading.
 
 Configuration is loaded from `config.yaml` and can be overridden with environment variables.
 
-Environment variables use the `HT_` prefix and follow the structure:
+Environment variables use the `CHT_` prefix and follow the structure:
 
 ```
-HT_<SECTION>_<KEY>
+CHT_<SECTION>_<KEY>
 
 Example:
-HT_SERVER_PORT=8080
-HT_DATABASE_URI=mongodb://localhost:27017
-HT_AUTH_JWT_SECRET=my-secret
+CHT_SERVER_PORT=8080
+CHT_DATABASE_URI=mongodb://localhost:27017
+CHT_AUTH_JWT_SECRET=my-secret
 ```
 
 See `config.example.yaml` for all available options.

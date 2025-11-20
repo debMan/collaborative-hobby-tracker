@@ -1,0 +1,36 @@
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo icon -->
+  <g>
+    <!-- Background circle -->
+    <circle cx="60" cy="60" r="50" fill="#1a73e8" opacity="0.1"/>
+
+    <!-- Stash box -->
+    <rect x="35" y="40" width="50" height="45" rx="4" fill="#1a73e8"/>
+
+    <!-- Items inside -->
+    <g opacity="0.9">
+      <!-- Checked item -->
+      <circle cx="45" cy="52" r="3" fill="white"/>
+      <polyline points="43.5,52 44.5,53 46,50.5" stroke="#1a73e8" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <line x1="52" y1="52" x2="75" y2="52" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Unchecked items -->
+      <circle cx="45" cy="62" r="3" fill="transparent" stroke="white" stroke-width="1.5"/>
+      <line x1="52" y1="62" x2="72" y2="62" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+      <circle cx="45" cy="72" r="3" fill="transparent" stroke="white" stroke-width="1.5"/>
+      <line x1="52" y1="72" x2="70" y2="72" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Collaborative dots -->
+    <circle cx="72" cy="30" r="4" fill="#1a73e8" stroke="white" stroke-width="1.5"/>
+    <circle cx="82" cy="33" r="3.5" fill="#1967d2" stroke="white" stroke-width="1.5"/>
+    <circle cx="78" cy="25" r="3" fill="#4285f4" stroke="white" stroke-width="1.5"/>
+  </g>
+
+  <!-- "Stash" text -->
+  <text x="130" y="70" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#1a73e8">Stash</text>
+
+  <!-- Tagline -->
+  <text x="130" y="92" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#5f6368">Collaborative Hobby Tracker</text>
+</svg>
